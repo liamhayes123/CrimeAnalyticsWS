@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+  $.ajax({
+        type: "GET",
+        url: "http://localhost:15021/Service1.svc/GetAllCrimes",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        cache: false,
+        success: function(msg) {
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("error occured during crimes");
+        }
+    });
+  });
+});
+</script>
+</head>
+<body>
+<button>Get Requests!</button>
+</body>
+</html>
