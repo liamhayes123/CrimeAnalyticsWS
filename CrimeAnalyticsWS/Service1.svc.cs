@@ -46,20 +46,23 @@ namespace CrimeAnalyticsWS
             return results;
         }
 
-        public List<wsCrime> GetAllCrimesInBoundaryByCategory(string coordinates, string selectedCategories)
+        public List<wsCrime> GetAllCrimesInBoundaryByCategory(string coordinates, string selectedCategories, string fromDate, string toDate)
         {
             string[] categoriesArray = JsonConvert.DeserializeObject<string[]>(selectedCategories);
             string categories = string.Join(",", categoriesArray);
             List<wsCrime> results = new List<wsCrime>();
             JavaScriptSerializer js = new JavaScriptSerializer();
             List<Coordinates> coords = js.Deserialize<List<Coordinates>>(coordinates);
-            List<Crime> dbCrimes = DatabaseCalls.GetAllCrimesInBoundaryByCategory(coords, categories);
+
+            fromDate = JsonConvert.DeserializeObject<DateTime>(fromDate).ToString("yyyy-MM-dd");
+            toDate = JsonConvert.DeserializeObject<DateTime>(toDate).ToString("yyyy-MM-dd");
+
+            List<Crime> dbCrimes = DatabaseCalls.GetAllCrimesInBoundaryByCategory(coords, categories, fromDate, toDate);
             foreach (Crime dbCrime in dbCrimes)
             {
                 results.Add(new wsCrime(dbCrime));
             }
             return results;
         }
-
     }
 }

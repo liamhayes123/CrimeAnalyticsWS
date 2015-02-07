@@ -26,7 +26,7 @@ namespace CrimeAnalyticsWS
         List<wsCrime> GetAllCrimesInBoundary(string Coordinates);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAllCrimesInBoundaryByCategory/?Coordinates={Coordinates}&selectedCategories={selectedCategories}")]
-        List<wsCrime> GetAllCrimesInBoundaryByCategory(string Coordinates, string selectedCategories);
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetAllCrimesInBoundaryByCategory/?Coordinates={Coordinates}&selectedCategories={selectedCategories}&fromDate={fromDate}&toDate={toDate}")]
+        List<wsCrime> GetAllCrimesInBoundaryByCategory(string Coordinates, string selectedCategories, string fromDate, string toDate);
     }
 }
